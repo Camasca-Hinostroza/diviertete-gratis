@@ -1,0 +1,8 @@
+# Ignorar bases de datos locales por seguridad
+*.db
+cartelera.db
+
+# Ignorar la basura temporal de Python
+__pycache__/
+*.pyc
+backend/__pycache__/

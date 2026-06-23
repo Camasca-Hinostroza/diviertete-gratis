@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ evento.titulo }} | Diviértete Gratis Lima</title>
+    <meta name="description" content="{{ evento.descripcion | truncate(150) }}">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="bg-gray-100 text-gray-900 font-sans antialiased">
+
+    <div class="max-w-4xl mx-auto px-4 py-8">
+        <a href="/" class="inline-flex items-center text-xs font-bold text-indigo-600 mb-6 hover:text-indigo-800 transition no-underline">
+            ← Volver a la cartelera principal
+        </a>
+
+        <main class="bg-white rounded-3xl p-6 md:p-8 shadow-sm border border-gray-100 space-y-6">
+            <div>
+                <span class="bg-indigo-100 text-indigo-800 text-[11px] font-black px-3 py-1 rounded-full uppercase tracking-wider">
+                    {{ evento.categoria_nombre }}
+                </span>
+                <h1 class="text-2xl md:text-4xl font-black text-indigo-950 mt-3 leading-tight">
+                    {{ evento.titulo }}
+                </h1>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-4 bg-gray-50 p-4 rounded-2xl text-xs border border-gray-100">
+                <div>
+                    <p class="text-gray-400 font-bold uppercase tracking-wider">Distrito</p>
+                    <p class="font-black text-gray-800 mt-0.5">📍 {{ evento.distrito_nombre }}</p>
+                </div>
+                <div>
+                    <p class="text-gray-400 font-bold uppercase tracking-wider">Fecha y Hora</p>
+                    <p class="font-black text-indigo-700 mt-0.5">📅 {{ evento.fecha_evento }} • {{ evento.hora_evento }}</p>
+                </div>
+                <div class="col-span-2 md:col-span-1">
+                    <p class="text-gray-400 font-bold uppercase tracking-wider">Costo</p>
+                    <p class="font-black text-green-600 mt-0.5">💰 100% GRATUITO</p>
+                </div>
+            </div>
+
+            <div class="space-y-3">
+                <h3 class="text-base font-black text-gray-800">Descripción del Evento</h3>
+                <p class="text-gray-600 text-sm leading-relaxed whitespace-pre-line">
+                    {{ evento.descripcion }}
+                </p>
+            </div>
+
+            <div class="space-y-3 pt-2">
+                <h3 class="text-base font-black text-gray-800">¿Cómo llegar?</h3>
+                <p class="text-gray-600 text-sm">Dirección exacta: <span class="font-bold text-gray-800">{{ evento.lugar_direccion }}</span></p>
+                <div class="bg-gray-100 h-48 rounded-2xl flex items-center justify-center text-gray-400 text-xs border border-dashed border-gray-200 font-mono">
+                    🗺️ [MAPA DE GOOGLE MAPS INTEGRADO]
+                </div>
+            </div>
+
+            <div class="border-t border-gray-100 pt-6">
+                <div class="bg-indigo-50/50 p-4 rounded-2xl text-center border border-dashed border-indigo-200/60">
+                    <span class="text-[10px] font-black text-indigo-400 uppercase tracking-widest block mb-2">Anuncio Relacionado</span>
+                    <div class="bg-white h-24 rounded-xl flex items-center justify-center text-gray-400 text-xs font-mono font-bold shadow-sm">
+                        [BANNER ADS INTERNO monetizando la visita]
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+</body>
+</html>

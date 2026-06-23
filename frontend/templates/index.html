@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diviértete Gratis | Cartelera Cultural Moderna</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="bg-gray-100 text-gray-900 font-sans antialiased">
+
+    <div class="max-w-7xl mx-auto px-4 py-6">
+        
+        <header class="flex justify-between items-center mb-8">
+            <div>
+                <span class="text-xs font-bold text-gray-400 uppercase tracking-widest">Lima, Perú</span>
+                <a href="/" class="text-2xl font-black text-indigo-900 no-underline">🎉 Diviértete<span class="text-indigo-600">Gratis</span></a>
+            </div>
+          
+<div class="flex items-center gap-3 bg-white border border-gray-200 px-4 py-2 rounded-2xl shadow-sm">
+    <div class="text-right">
+        <span class="text-[10px] font-bold text-gray-400 block uppercase tracking-wider">Saldo Acumulado</span>
+        <span class="text-xs font-black text-emerald-600 font-mono block">USD ${{ "%.3f"|format(billetera.saldo_acumulado_usd) }}</span>
+    </div>
+    <div class="w-8 h-8 bg-emerald-100 text-emerald-700 rounded-xl flex items-center justify-center font-bold text-sm shadow-sm">
+        💵
+    </div>
+</div>
+
+        </header>
+
+        <div class="flex gap-2 overflow-x-auto pb-4 mb-6 no-scrollbar">
+            <a href="/" class="text-xs font-bold px-4 py-2 rounded-full whitespace-nowrap transition shadow text-center inline-block {% if not categoria_actual %} bg-indigo-600 text-white {% else %} bg-white text-gray-600 border border-gray-200 hover:bg-gray-50 {% endif %}">
+                ✨ Todo
+            </a>
+            
+            <a href="/?categoria=Cine" class="text-xs font-bold px-4 py-2 rounded-full whitespace-nowrap transition text-center inline-block {% if categoria_actual == 'Cine' %} bg-indigo-600 text-white shadow {% else %} bg-white text-gray-600 border border-gray-200 hover:bg-gray-50 {% endif %}">
+                🎬 Cine
+            </a>
+            
+            <a href="/?categoria=Bailables" class="text-xs font-bold px-4 py-2 rounded-full whitespace-nowrap transition text-center inline-block {% if categoria_actual == 'Bailables' %} bg-indigo-600 text-white shadow {% else %} bg-white text-gray-600 border border-gray-200 hover:bg-gray-50 {% endif %}">
+                🕺 Bailables
+            </a>
+            
+            <a href="/?categoria=Ferias" class="text-xs font-bold px-4 py-2 rounded-full whitespace-nowrap transition text-center inline-block {% if categoria_actual == 'Ferias' %} bg-indigo-600 text-white shadow {% else %} bg-white text-gray-600 border border-gray-200 hover:bg-gray-50 {% endif %}">
+                🎪 Ferias
+            </a>
+        </div>
+
+        <div class="flex flex-col lg:flex-row gap-8">
+            
+            <main class="w-full lg:w-3/4 space-y-8">
+                
+                <section class="relative bg-gradient-to-br from-indigo-900 via-indigo-800 to-purple-900 text-white rounded-3xl p-8 shadow-xl overflow-hidden flex flex-col justify-between min-h-[240px]">
+                    <div>
+                        <span class="bg-yellow-400 text-indigo-900 text-[10px] font-black px-2.5 py-1 rounded-full uppercase tracking-wider">Destacado del mes</span>
+                        <h2 class="text-2xl font-black mt-4 max-w-lg leading-tight">Explora las actividades gratuitas de tu distrito</h2>
+                        <p class="text-indigo-100 text-xs mt-2 max-w-md">Usa los filtros superiores para navegar en tiempo real por los eventos culturales inyectados de forma automatizada.</p>
+                    </div>
+                </section>
+
+                <section>
+                    <h3 class="text-sm font-black text-gray-400 uppercase tracking-wider mb-4">
+                        🔥 {% if categoria_actual %} Resultados para {{ categoria_actual }} {% else %} Todos los recomendados {% endif %}
+                    </h3>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        
+                        {% for evento in eventos %}
+                        <article class="bg-white rounded-3xl p-5 shadow-sm border border-gray-100 flex flex-col justify-between hover:shadow-md transition">
+                            <div>
+                                <div class="bg-gray-50 h-36 rounded-2xl flex items-center justify-center text-gray-400 text-xs mb-4 border border-dashed border-gray-200 font-mono">
+                                    📸 Evento Gratuito
+                                </div>
+                                <span class="bg-purple-100 text-purple-800 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase">
+                                    {{ evento.categoria_nombre }}
+                                </span>
+                                <h4 class="font-bold text-base text-gray-900 mt-2 leading-snug">
+                                    {{ evento.titulo }}
+                                </h4>
+                                <p class="text-gray-500 text-xs mt-1 line-clamp-2">
+                                    {{ evento.descripcion }}
+                                </p>
+                            </div>
+                            
+                            <div class="mt-4 pt-3 border-t border-gray-50 flex flex-col sm:flex-row gap-3 justify-between items-start sm:items-center">
+                                <div class="text-[11px]">
+                                    <span class="text-gray-600 block font-medium">📍 {{ evento.distrito_nombre }}</span>
+                                    <span class="text-indigo-600 font-bold block mt-0.5">{{ evento.fecha_evento }} • {{ evento.hora_evento }}</span>
+                                </div>
+                                <a href="/evento/{{ evento.id }}" class="bg-indigo-50 text-indigo-700 hover:bg-indigo-600 hover:text-white text-[11px] font-black px-4 py-2.5 rounded-xl transition text-center block w-full sm:w-auto no-underline shadow-sm">
+                                    Ver Detalles
+                                </a>
+                            </div>
+                        </article>
+                        {% endfor %}
+
+                    </div>
+                </section>
+            </main>
+
+            <aside class="w-full lg:w-1/4">
+                <div class="bg-white p-4 rounded-3xl shadow-sm border border-gray-100 text-center sticky top-6">
+                    <h4 class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-3">Publicidad</h4>
+                    
+<a href="/click-publicidad" target="_blank" class="block bg-gradient-to-br from-amber-100 to-yellow-50 p-6 rounded-2xl border border-dashed border-amber-300 text-center hover:scale-[1.02] transition cursor-pointer no-underline group">
+    <span class="bg-amber-600 text-white text-[9px] font-black px-2 py-0.5 rounded-full uppercase tracking-wider">Anuncio Patrocinado</span>
+    <h5 class="text-amber-950 font-black text-sm mt-4 group-hover:text-amber-700">🚀 ¿Quieres aprender Python y SQL desde cero?</h5>
+    <p class="text-amber-800 text-[11px] mt-2 leading-relaxed font-medium">Inscríbete hoy en los Bootcamps de MI-PRIMERA-EMPRESA con 50% de descuento cupón especial.</p>
+    <div class="mt-6 bg-amber-600 text-white text-xs font-bold py-2 rounded-xl shadow-sm">
+        Ver Promoción ⚡
+    </div>
+</a>
+
+
+
+                </div>
+            </aside>
+
+        </div>
+    </div>
+
+</body>
+</html>
