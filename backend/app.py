@@ -108,3 +108,16 @@ def procesar_clic_publicitario():
     registrar_clic_anuncio()
     # Redirigimos al usuario a una página externa (simulando la web del anunciante)
     return RedirectResponse(url="https://www.google.com")
+
+# Al final de backend/app.py
+
+@app.get("/ejecutar-scraper")
+def disparar_recolector_nube():
+    """Ruta especial para activar el robot recolector desde internet gratis"""
+    try:
+        # Importamos el scraper aquí adentro para evitar problemas de carga
+        from backend.scraper import ejecutar_bot_recolector_html
+        ejecutar_bot_recolector_html()
+        return {"status": "éxito", "mensaje": "🤖 ¡Robot activado! Eventos de Lima raspados y base de datos SQLite sincronizada."}
+    except Exception as e:
+        return {"status": "error", "mensaje": f"No se pudo ejecutar el scraping: {str(e)}"}

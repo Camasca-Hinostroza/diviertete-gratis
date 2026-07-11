@@ -2,11 +2,13 @@
 import requests
 from bs4 import BeautifulSoup  # 👈 El cerebro extractor que lee etiquetas HTML
 from backend.database import conectar_base_datos
+import os
 
 def ejecutar_bot_recolector_html():
     print("🤖 El robot cazador está escaneando la estructura HTML por red...")
     
     # Apuntamos a la ruta virtual que acabamos de publicar en tu servidor local
+    puerto = os.environ.get("PORT", "8000")
     url_fuente = "http://127.0.0.1:8000/fuente-oficial"
     
     try:
