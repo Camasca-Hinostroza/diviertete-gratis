@@ -9,7 +9,7 @@ def ejecutar_bot_recolector_html():
     
     # Apuntamos a la ruta virtual que acabamos de publicar en tu servidor local
     puerto = os.environ.get("PORT", "8000")
-    url_fuente = "http://127.0.0.1:8000/fuente-oficial"
+    url_fuente = "https://diviertete-gratis.onrender.com/fuente-oficial"
     
     try:
         respuesta = requests.get(url_fuente, timeout=10)
